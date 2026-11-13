@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Clone') {
             steps {
-                git url: 'https://github.com/softservedata/ujp005devops.git', branch: 'main'
+                git url: 'https://github.com/softservedata/ujp005devops.git', branch: 'main', credentialsId: 'github_creds'
             }
         }
         stage('Build') {
