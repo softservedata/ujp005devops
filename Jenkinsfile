@@ -13,12 +13,12 @@ pipeline {
         }
         stage('Build') {
             steps {
-                bat 'mvn -B package -DskipTests'
+                sh 'mvn -B package -DskipTests'
             }
         }
         stage('Unit Test') {
             steps {
-                bat 'mvn -B test'
+                sh 'mvn -B test'
             }
         }
         stage('done') {
