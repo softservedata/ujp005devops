@@ -9,6 +9,9 @@ jobs:
       - name: Checkout ujp005devops
         uses: actions/checkout@v7
 
+      - name: Git branch
+        run: "git branch"
+
       - name: List files
         run: |
           ls -al ${{ github.workspace }}
@@ -25,3 +28,15 @@ jobs:
           
       - name: Maven version
         run: "mvn -version"
+
+      - name: Build war
+        run: 'mvn package -DskipTests'
+
+      - name: Run tests and save logs
+        id: test
+        run: |
+          mvn test | tee test-log.txt
+        continue-on-error: true
+
+      - name: Result
+        run: "cat test-log.txt"
